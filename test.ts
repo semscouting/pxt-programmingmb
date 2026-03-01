@@ -3,8 +3,7 @@ let PIR = DigitalPin.P2
 let LED = DigitalPin.P13
 let BUZZER = DigitalPin.P0
 
-programmingmb.setButtonMode(BUTTON, programmingmb.SignalMode.ActiveLow)
-programmingmb.setLedMode(programmingmb.SignalMode.ActiveLow)
+programmingmb.setButtonPull(BUTTON, programmingmb.PullSetting.None)
 programmingmb.setBuzzerMode(programmingmb.SignalMode.ActiveHigh)
 
 basic.forever(function () {
