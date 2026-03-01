@@ -1,0 +1,21 @@
+{
+  "name": "programmingmb",
+  "version": "0.1.2",
+  "description": "Digital-only Programming Merit Badge extension for micro:bit",
+  "license": "MIT",
+  "dependencies": {
+    "core": "*"
+  },
+  "files": [
+    "main.ts",
+    "inputs.ts",
+    "outputs.ts"
+  ],
+  "testFiles": [
+    "test.ts"
+  ],
+  "public": true,
+  "supportedTargets": [
+    "microbit"
+  ]
+}
