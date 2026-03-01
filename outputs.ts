@@ -6,6 +6,9 @@ namespace programmingmb {
         Off = 0
     }
 
+    let _buzzerOn = false
+    const _buzzerHz = 2000
+
     //% block="set LED on %pin to %state"
     //% group="Outputs" weight=90
     export function ledSet(pin: DigitalPin, state: OnOff): void {
@@ -19,14 +22,19 @@ namespace programmingmb {
     //% group="Outputs" weight=85
     export function buzzerSet(pin: DigitalPin, state: OnOff): void {
         const aPin = <AnalogPin><number>pin
+        pins.analogSetPitchPin(aPin)
 
         if (state == OnOff.On) {
-            // PWM full-scale ON (works with many active buzzer modules)
-            pins.analogWritePin(aPin, 1023)
+            // Start once to avoid choppy retriggering.
+            if (!_buzzerOn) {
+                music.ringTone(_buzzerHz)
+                _buzzerOn = true
+            }
         } else {
-            // PWM OFF
-            pins.analogWritePin(aPin, 0)
-            // Also force digital low to quiet some boards/modules
+            if (_buzzerOn) {
+                music.stopAllSounds()
+                _buzzerOn = false
+            }
             pins.digitalWritePin(pin, 0)
         }
     }
