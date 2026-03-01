@@ -6,9 +6,6 @@ namespace programmingmb {
         Off = 0
     }
 
-    let _buzzerOn = false
-    const _buzzerHz = 2000
-
     //% block="set LED on %pin to %state"
     //% group="Outputs" weight=90
     export function ledSet(pin: DigitalPin, state: OnOff): void {
@@ -21,21 +18,12 @@ namespace programmingmb {
     //% block="set buzzer on %pin to %state"
     //% group="Outputs" weight=85
     export function buzzerSet(pin: DigitalPin, state: OnOff): void {
-        const aPin = <AnalogPin><number>pin
-        pins.analogSetPitchPin(aPin)
-
+        // Deterministic ON/OFF for class use (no tone latch side effects).
         if (state == OnOff.On) {
-            // Start once to avoid choppy retriggering.
-            if (!_buzzerOn) {
-                music.ringTone(_buzzerHz)
-                _buzzerOn = true
-            }
+            pins.digitalWritePin(pin, 1)
         } else {
-            if (_buzzerOn) {
-                music.stopAllSounds()
-                _buzzerOn = false
-            }
             pins.digitalWritePin(pin, 0)
+            music.stopAllSounds()
         }
     }
 }
