@@ -21,12 +21,13 @@ namespace programmingmb {
     }
 
     /**
-     * True when button is pressed (default module behavior: pressed = HIGH).
+     * True when button is pressed.
+     * Default for common external button modules: pressed = LOW.
      */
     //% block="button on %pin is pressed"
     //% group="Inputs" weight=110
     export function buttonPressed(pin: DigitalPin): boolean {
-        return pins.digitalReadPin(pin) == 1
+        return pins.digitalReadPin(pin) == 0
     }
 
     //% block="button raw value on %pin"
