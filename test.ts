@@ -4,7 +4,6 @@ let LED = DigitalPin.P13
 let BUZZER = DigitalPin.P0
 
 programmingmb.setButtonPull(BUTTON, programmingmb.PullSetting.None)
-programmingmb.setBuzzerMode(programmingmb.SignalMode.ActiveHigh)
 
 basic.forever(function () {
     let trigger = programmingmb.buttonPressed(BUTTON) || programmingmb.pirMotionDetected(PIR)
