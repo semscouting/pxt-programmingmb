@@ -1,3 +1,4 @@
+//% color="#243E2C" icon="\uf11b" block="Programming MB"
 namespace programmingmb {
     //% block="button on %pin is pressed"
     //% group="Inputs" weight=100
