@@ -18,14 +18,16 @@ namespace programmingmb {
     //% block="set buzzer on %pin to %state"
     //% group="Outputs" weight=85
     export function buzzerSet(pin: DigitalPin, state: OnOff): void {
-        // "Frog croak" mode that proved audible on your hardware.
         const aPin = <AnalogPin><number>pin
+
         if (state == OnOff.On) {
+            // PWM full-scale ON (works with many active buzzer modules)
             pins.analogWritePin(aPin, 1023)
         } else {
+            // PWM OFF
             pins.analogWritePin(aPin, 0)
+            // Also force digital low to quiet some boards/modules
             pins.digitalWritePin(pin, 0)
-            music.stopAllSounds()
         }
     }
 }

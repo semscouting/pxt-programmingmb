@@ -23,21 +23,11 @@ namespace programmingmb {
     /**
      * True when button is pressed.
      * Default for common external button modules: pressed = LOW.
-     * Includes a tiny built-in debounce sample to reduce clicky toggling.
      */
     //% block="button on %pin is pressed"
     //% group="Inputs" weight=110
     export function buttonPressed(pin: DigitalPin): boolean {
-        const a = pins.digitalReadPin(pin)
-        control.waitMicros(3000)
-        const b = pins.digitalReadPin(pin)
-        control.waitMicros(3000)
-        const c = pins.digitalReadPin(pin)
-
-        // majority vote for a stable reading
-        const sum = a + b + c
-        const stable = (sum >= 2) ? 1 : 0
-        return stable == 0
+        return pins.digitalReadPin(pin) == 0
     }
 
     //% block="button raw value on %pin"
