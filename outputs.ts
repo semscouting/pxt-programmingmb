@@ -18,10 +18,12 @@ namespace programmingmb {
     //% block="set buzzer on %pin to %state"
     //% group="Outputs" weight=85
     export function buzzerSet(pin: DigitalPin, state: OnOff): void {
-        // Deterministic ON/OFF for class use (no tone latch side effects).
+        // "Frog croak" mode that proved audible on your hardware.
+        const aPin = <AnalogPin><number>pin
         if (state == OnOff.On) {
-            pins.digitalWritePin(pin, 1)
+            pins.analogWritePin(aPin, 1023)
         } else {
+            pins.analogWritePin(aPin, 0)
             pins.digitalWritePin(pin, 0)
             music.stopAllSounds()
         }
