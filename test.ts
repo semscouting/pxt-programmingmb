@@ -1,16 +1,22 @@
-let buttonPin = DigitalPin.P1
-let pirPin = DigitalPin.P2
-let ledPin = DigitalPin.P13
-let buzzerPin = DigitalPin.P0
+let BUTTON = DigitalPin.P1
+let PIR = DigitalPin.P2
+let LED = DigitalPin.P13
+let BUZZER = DigitalPin.P0
+
+programmingmb.setButtonMode(BUTTON, programmingmb.SignalMode.ActiveLow)
+programmingmb.setLedMode(programmingmb.SignalMode.ActiveLow)
+programmingmb.setBuzzerMode(programmingmb.SignalMode.ActiveHigh)
 
 basic.forever(function () {
-    let trigger = programmingmb.buttonPressed(buttonPin) || programmingmb.pirMotionDetected(pirPin)
+    let trigger = programmingmb.buttonPressed(BUTTON) || programmingmb.pirMotionDetected(PIR)
+
     if (trigger) {
-        programmingmb.ledOn(ledPin)
-        programmingmb.buzzerOn(buzzerPin)
+        programmingmb.ledSet(LED, programmingmb.OnOff.On)
+        programmingmb.buzzerSet(BUZZER, programmingmb.OnOff.On)
     } else {
-        programmingmb.ledOff(ledPin)
-        programmingmb.buzzerOff(buzzerPin)
+        programmingmb.ledSet(LED, programmingmb.OnOff.Off)
+        programmingmb.buzzerSet(BUZZER, programmingmb.OnOff.Off)
     }
+
     basic.pause(25)
 })
