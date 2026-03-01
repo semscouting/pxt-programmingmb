@@ -1,6 +1,6 @@
 {
   "name": "programmingmb",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Digital-only Programming Merit Badge extension for micro:bit",
   "license": "MIT",
   "dependencies": {
