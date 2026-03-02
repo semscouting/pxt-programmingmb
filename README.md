@@ -9,3 +9,5 @@ MakeCode extension for Programming Merit Badge (digital-only).
 ## Import
 In MakeCode, import by URL:
 `https://github.com/semscouting/pxt-programmingmb`
+
+<!-- touch: force refresh for icon metadata -->
