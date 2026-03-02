@@ -37,11 +37,19 @@ namespace programmingmb {
     }
 
     /**
-     * PIR read (active HIGH when motion detected).
+     * PIR read (active HIGH when object/motion detected).
      */
-    //% block="PIR on %pin detects motion"
-    //% group="Inputs" weight=90
-    export function pirMotionDetected(pin: DigitalPin): boolean {
+    //% block="PIR on %pin detects object"
+    //% group="Inputs" weight=95
+    export function pirObjectDetected(pin: DigitalPin): boolean {
         return pins.digitalReadPin(pin) == 1
+    }
+
+    /**
+     * Backward-compatible alias.
+     */
+    //% blockHidden=true
+    export function pirMotionDetected(pin: DigitalPin): boolean {
+        return pirObjectDetected(pin)
     }
 }

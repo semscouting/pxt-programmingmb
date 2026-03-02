@@ -30,4 +30,24 @@ namespace programmingmb {
             pins.digitalWritePin(pin, 0)
         }
     }
+
+    /**
+     * Simple PIR -> LED behavior block.
+     */
+    //% block="PIR %pirPin controls LED %ledPin"
+    //% group="PIR" weight=80
+    export function pirControlsLed(pirPin: DigitalPin, ledPin: DigitalPin): void {
+        if (pirObjectDetected(pirPin)) ledSet(ledPin, OnOff.On)
+        else ledSet(ledPin, OnOff.Off)
+    }
+
+    /**
+     * Simple PIR -> buzzer behavior block.
+     */
+    //% block="PIR %pirPin controls buzzer %buzzerPin"
+    //% group="PIR" weight=75
+    export function pirControlsBuzzer(pirPin: DigitalPin, buzzerPin: DigitalPin): void {
+        if (pirObjectDetected(pirPin)) buzzerSet(buzzerPin, OnOff.On)
+        else buzzerSet(buzzerPin, OnOff.Off)
+    }
 }
